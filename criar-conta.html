@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link href="src/styles/output.css" rel="stylesheet">
+  <title>Dev Burguer - Criar Conta</title>
+  <style>
+    .nav-wrap { position: sticky; top: 0; z-index: 60; background: rgba(24,24,27,.95); border-bottom: 1px solid #3f3f46; }
+    .nav-list { max-width: 80rem; margin: 0 auto; display: flex; gap: .5rem; padding: .9rem .75rem; overflow-x: auto; }
+    .nav-link { color: #fff; font-weight: 600; padding: .5rem .9rem; border-radius: .5rem; border: 1px solid transparent; white-space: nowrap; }
+    .nav-link.active, .nav-link:hover { background: #dc2626; border-color: #ef4444; }
+    .section-box { background: #fff; border-radius: .6rem; padding: 1rem; margin: 1rem auto; max-width: 48rem; box-shadow: 0 8px 25px rgba(0,0,0,.08); }
+    .form-field { width: 100%; border: 2px solid #d4d4d8; border-radius: .4rem; padding: .5rem .75rem; margin-top: .4rem; margin-bottom: .8rem; }
+    .form-btn { background: #18181b; color: #fff; border-radius: .5rem; padding: .55rem 1rem; font-weight: 700; }
+  </style>
+</head>
+<body class="bg-zinc-100">
+  <nav class="nav-wrap">
+    <div class="nav-list">
+      <a class="nav-link" href="index.html">Cardápio</a>
+      <a class="nav-link" href="login.html">Login</a>
+      <a class="nav-link active" href="criar-conta.html">Criar conta</a>
+      <a class="nav-link" href="perfil.html">Seu perfil</a>
+      <a class="nav-link" href="contato.html">Contato</a>
+      <a class="nav-link" href="sobre.html">Sobre</a>
+    </div>
+  </nav>
+
+  <section class="section-box ">
+    <h1 class="text-3xl font-bold">Criar conta</h1>
+    <p class="font-medium mt-2">Cadastre-se para deixar seus pedidos mais rápidos.</p>
+    <form id="register-form" class="mt-4">
+      <label class="font-bold">Nome completo</label>
+      <input id="register-name" class="form-field" type="text" required>
+      <label class="font-bold">Telefone</label>
+      <input id="register-phone" class="form-field" type="text" required>
+      <label class="font-bold">E-mail</label>
+      <input id="register-email" class="form-field" type="email" required>
+      <label class="font-bold">Senha</label>
+      <input id="register-password" class="form-field" type="password" required>
+      <label class="font-bold">Endereço</label>
+      <input id="register-address" class="form-field" type="text">
+      <button type="submit" class="form-btn hover:scale-110 hover:-rotate-2 duration-200">Criar minha conta</button>
+    </form>
+  </section>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
