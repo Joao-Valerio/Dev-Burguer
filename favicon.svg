@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Pão de cima -->
+  <ellipse cx="50" cy="25" rx="35" ry="18" fill="#D4A574"/>
+  <path d="M 15 25 Q 15 15 50 10 Q 85 15 85 25 Z" fill="#E6B88A"/>
+  
+  <!-- Alface -->
+  <path d="M 20 32 Q 25 30 50 31 Q 75 30 80 32 L 78 38 Q 50 40 22 38 Z" fill="#2D5016"/>
+  
+  <!-- Queijo -->
+  <rect x="18" y="40" width="64" height="6" fill="#FFD700" rx="2"/>
+  
+  <!-- Carne -->
+  <ellipse cx="50" cy="50" rx="32" ry="8" fill="#8B4513"/>
+  <ellipse cx="50" cy="50" rx="32" ry="6" fill="#A0522D"/>
+  
+  <!-- Tomate -->
+  <circle cx="35" cy="58" r="5" fill="#DC143C"/>
+  <circle cx="65" cy="58" r="5" fill="#DC143C"/>
+  
+  <!-- Pão de baixo -->
+  <ellipse cx="50" cy="72" rx="35" ry="16" fill="#D4A574"/>
+  <path d="M 15 72 Q 15 82 50 87 Q 85 82 85 72 Z" fill="#CD9B6D"/>
+  
+  <!-- Padrão no pão -->
+  <circle cx="35" cy="20" r="2" fill="#C19A6B" opacity="0.6"/>
+  <circle cx="65" cy="22" r="2" fill="#C19A6B" opacity="0.6"/>
+  <circle cx="50" cy="15" r="1.5" fill="#C19A6B" opacity="0.6"/>
+  
+  <!-- Sementes de gergelim -->
+  <circle cx="40" cy="78" r="1.5" fill="#F5DEB3" opacity="0.8"/>
+  <circle cx="60" cy="76" r="1.5" fill="#F5DEB3" opacity="0.8"/>
+  <circle cx="50" cy="82" r="1.5" fill="#F5DEB3" opacity="0.8"/>
+</svg>
