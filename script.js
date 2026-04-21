@@ -1,17 +1,22 @@
-const menu = document.getElementById("menu")
+const menu = document.getElementById("menu-container")
 const cartBtn = document.getElementById("cart-btn")
 const cartModal = document.getElementById("cart-modal")
 const cartItemsContainer = document.getElementById("cart-items")
 const cartTotal = document.getElementById("cart-total")
 const checkoutBtn = document.getElementById("checkout-btn")
 const closeModalBtn = document.getElementById("close-modal-btn")
+const clearCartBtn = document.getElementById("clear-cart-btn")
 const cartCounter = document.getElementById("cart-count")
 const addressInput = document.getElementById("address")
 const addressWarn = document.getElementById("address-warn")
 
-let cart = []
+let cart = JSON.parse(localStorage.getItem("devburguer_cart")) || []
 
-//Abrir Modal do carrinho
+function saveCart() {
+    localStorage.setItem("devburguer_cart", JSON.stringify(cart))
+}
+
+// Abrir Modal do carrinho
 cartBtn.addEventListener("click", function () {
     cartModal.style.display = "flex"
     updateCartModal()
@@ -26,7 +31,6 @@ cartModal.addEventListener("click", function (event) {
 
 closeModalBtn.addEventListener("click", function (event) {
     cartModal.style.display = "none"
-
 })
 
 menu.addEventListener("click", function (event) {
@@ -35,7 +39,6 @@ menu.addEventListener("click", function (event) {
         const name = parentButton.getAttribute("data-name")
         const price = parseFloat(parentButton.getAttribute("data-price"))
 
-        // Adicionar no carrinho
         addToCart(name, price)
     }
 })
@@ -53,6 +56,18 @@ function addToCart(name, price) {
         })
     }
     updateCartModal()
+    saveCart()
+    Toastify({
+        text: `${name} adicionado ao carrinho`,
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+            background: "#16a34a",
+        },
+    }).showToast()
 }
 
 // Atualiza carrinho
@@ -60,6 +75,7 @@ function updateCartModal() {
     cartItemsContainer.innerHTML = ""
     let total = 0
     cart.forEach(item => {
+        const subtotal = item.price * item.quantity
         const cartItemsElement = document.createElement("div")
         cartItemsElement.classList.add("flex", "justify-between", "mb-4", "flex-col")
         cartItemsElement.innerHTML = `
@@ -67,7 +83,8 @@ function updateCartModal() {
                 <div>
                     <p class="font-medium">${item.name}<p>
                     <p>Qtd: ${item.quantity}<p>
-                    <p class="font-medium mt-2">R$ ${item.price.toFixed(2)}<p>
+                    <p class="font-medium mt-2">Unit: ${item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}<p>
+                    <p class="font-medium">Subtotal: ${subtotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}<p>
                 </div>
                 <div>
                     <button class="remove-from-cart-btn" data-name="${item.name}">
@@ -76,7 +93,7 @@ function updateCartModal() {
                 </div>
             </div>
         `
-        total += item.price * item.quantity
+        total += subtotal
 
         cartItemsContainer.appendChild(cartItemsElement)
 
@@ -105,12 +122,31 @@ function removeItemCart(name) {
         if (item.quantity > 1) {
             item.quantity -= 1
             updateCartModal()
+            saveCart()
             return
         }
         cart.splice(index, 1)
         updateCartModal()
+        saveCart()
     }
 }
+
+clearCartBtn.addEventListener("click", function () {
+    cart = []
+    updateCartModal()
+    saveCart()
+    Toastify({
+        text: "Carrinho limpo com sucesso",
+        duration: 2000,
+        close: true,
+        gravity: "top",
+        position: "right",
+        stopOnFocus: true,
+        style: {
+            background: "#ef4444",
+        },
+    }).showToast()
+})
 
 addressInput.addEventListener("input", function (event) {
     let inputValue = event.target.value
@@ -157,9 +193,10 @@ checkoutBtn.addEventListener("click", function () {
 
     cart = []
     updateCartModal()
+    saveCart()
 })
 
-//Verficar o horario
+// Verificar o horario
 function checkRestaurantOpen() {
     const data = new Date()
     const hora = data.getHours()
@@ -177,3 +214,4 @@ else {
     spanItem.classList.remove("bg-green-600")
     spanItem.classList.add("bg-red-500")
 }
+updateCartModal()
