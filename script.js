@@ -77,17 +77,17 @@ function updateCartModal() {
     cart.forEach(item => {
         const subtotal = item.price * item.quantity
         const cartItemsElement = document.createElement("div")
-        cartItemsElement.classList.add("flex", "justify-between", "mb-4", "flex-col")
+        cartItemsElement.classList.add("mb-4", "border-b", "border-zinc-200", "pb-4", "last:border-b-0")
         cartItemsElement.innerHTML = `
-            <div class="flex items-center justify-between">
-                <div>
-                    <p class="font-medium">${item.name}<p>
-                    <p>Qtd: ${item.quantity}<p>
-                    <p class="font-medium mt-2">Unit: ${item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}<p>
-                    <p class="font-medium">Subtotal: ${subtotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}<p>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div class="min-w-0">
+                    <p class="font-medium break-words">${item.name}</p>
+                    <p>Qtd: ${item.quantity}</p>
+                    <p class="font-medium mt-2">Unit: ${item.price.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
+                    <p class="font-medium">Subtotal: ${subtotal.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</p>
                 </div>
                 <div>
-                    <button class="remove-from-cart-btn" data-name="${item.name}">
+                    <button class="remove-from-cart-btn text-red-500 font-semibold" data-name="${item.name}">
                         Remover
                     </button>
                 </div>

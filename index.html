@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,8 +24,9 @@
       margin: 0 auto;
       display: flex;
       gap: .5rem;
-      padding: .9rem .75rem;
+      padding: .9rem 1rem;
       overflow-x: auto;
+      scrollbar-width: thin;
     }
     .nav-link {
       color: #fff;
@@ -35,51 +36,150 @@
       background: transparent;
       border: 1px solid transparent;
       white-space: nowrap;
+      flex-shrink: 0;
     }
     .nav-link.active, .nav-link:hover {
       background: #dc2626;
       border-color: #ef4444;
     }
-    .section-box {
-      background: #fff;
-      border-radius: .6rem;
-      padding: 1rem;
-      margin: 1rem auto;
+    .page-shell {
+      padding: 0 0 5.5rem;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
       max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 0.75rem;
+    }
+    .menu-item {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      min-width: 0;
+      background: #fff;
+      border-radius: 1rem;
+      padding: 0.9rem;
       box-shadow: 0 8px 25px rgba(0, 0, 0, .08);
     }
-    .simple-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1rem;
+    .menu-item-image {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 0.85rem;
+      object-fit: cover;
+      flex-shrink: 0;
     }
-    .form-field {
-      width: 100%;
-      border: 2px solid #d4d4d8;
-      border-radius: .4rem;
-      padding: .5rem .75rem;
-      margin-top: .4rem;
-      margin-bottom: .8rem;
+    .menu-item-content {
+      flex: 1;
+      min-width: 0;
     }
-    .form-btn {
+    .menu-item-desc {
+      margin-top: 0.35rem;
+      color: #3f3f46;
+      line-height: 1.5;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .cart-icon-btn {
       background: #18181b;
-      color: #fff;
-      border-radius: .5rem;
-      padding: .55rem 1rem;
-      font-weight: 700;
+      min-height: 2.75rem;
+      min-width: 3.25rem;
+      padding: 0.7rem 1rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
     .menu-category-title {
       font-size: 1.7rem;
       font-weight: 700;
       margin-top: 1rem;
     }
+    .category-wrap {
+      max-width: 80rem;
+      margin: 0 auto;
+      padding: 0 0.75rem;
+    }
+    .cart-modal-overlay {
+      padding: 1rem;
+    }
+    .cart-modal-panel {
+      background: #fff;
+      border-radius: 1rem;
+      width: min(680px, 100%);
+      max-height: calc(100vh - 2rem);
+      overflow-y: auto;
+      padding: 1.25rem;
+    }
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      width: 100%;
+    }
+    .cart-actions-group {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .sticky-cart {
+      padding: 0.9rem 1rem calc(0.9rem + env(safe-area-inset-bottom));
+    }
+    @media (max-width: 768px) {
+      .menu-grid {
+        padding: 0 1rem;
+      }
+    }
+    @media (max-width: 520px) {
+      .menu-grid,
+      .category-wrap,
+      .nav-list {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+      }
+      .menu-item {
+        flex-direction: column;
+      }
+      .menu-item-image {
+        width: 100%;
+        height: 12rem;
+      }
+      .price-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cart-icon-btn {
+        width: 100%;
+        border-radius: 0.75rem;
+      }
+      .cart-actions,
+      .cart-actions-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .cart-actions-group button,
+      #close-modal-btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body class="bg-zinc-100">
-  <header class="w-full h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
-    <div class="w-full h-full flex flex-col justify-center items-center">
-      <img src="assets/hamb-1.png" alt="Hamburguer 1" class="w-32 h-32 rounded-full shadow-lg hover:scale-110 duration-200">
-      <h1 class="text-4xl mt-4 mb-2 font-bold text-white">Dev Burguer</h1>
+  <header class="w-full min-h-[360px] md:h-[420px] bg-zinc-900 bg-home bg-cover bg-center">
+    <div class="w-full h-full flex flex-col justify-center items-center px-4 py-10 text-center">
+      <img src="assets/hamb-1.png" alt="Hamburguer 1" class="w-24 h-24 md:w-32 md:h-32 rounded-full shadow-lg hover:scale-110 duration-200">
+      <h1 class="text-3xl md:text-4xl mt-4 mb-2 font-bold text-white">Dev Burguer</h1>
       <span class="text-white font-medium">Rua 10, Paranavaí - PR</span>
       <div class="bg-green-500 px-4 py-1 rounded-lg mt-4" id="date-span">
         <span class="text-white font-medium">Seg a Dom - 18:00 as 22:00</span>
@@ -98,159 +198,159 @@
     </div>
   </nav>
 
-  <section>
-    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6">Conheça nosso cardápio</h2>
+  <section class="page-shell">
+    <h2 class="text-2xl md:text-3xl font-bold text-center mt-9 mb-6 px-4">Conheça nosso cardápio</h2>
     <div id="menu-container">
-      <main class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl">
-        <div class="flex gap-2">
-          <img src="assets/hamb-1.png" alt="Hamburguer Smash" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+      <main class="menu-grid">
+        <div class="menu-item">
+          <img src="assets/hamb-1.png" alt="Hamburguer Smash" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Hamburguer Smash</p>
-            <p class="font-semibold">Pão artesanal, burger 160g, queijo prato e maionese da casa.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Pão artesanal, burger 160g, queijo prato e maionese da casa.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$35.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Hamburguer Smash" data-price="35.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Hamburguer Smash" data-price="35.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2">
-          <img src="assets/hamb-2.png" alt="Hamburguer Duplo" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+        <div class="menu-item">
+          <img src="assets/hamb-2.png" alt="Hamburguer Duplo" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Hamburguer Duplo</p>
-            <p class="font-semibold">Dois burgers 120g, cheddar cremoso, bacon e cebola caramelizada.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Dois burgers 120g, cheddar cremoso, bacon e cebola caramelizada.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$40.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Hamburguer Duplo" data-price="40.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Hamburguer Duplo" data-price="40.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2">
-          <img src="assets/hamb-3.png" alt="X-Bacon Dev" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+        <div class="menu-item">
+          <img src="assets/hamb-3.png" alt="X-Bacon Dev" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">X-Bacon Dev</p>
-            <p class="font-semibold">Burger 160g, queijo prato, bacon crocante, alface e tomate.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Burger 160g, queijo prato, bacon crocante, alface e tomate.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$32.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="X-Bacon Dev" data-price="32.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="X-Bacon Dev" data-price="32.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2">
-          <img src="assets/hamb-4.png" alt="X-Salada Fresh" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+        <div class="menu-item">
+          <img src="assets/hamb-4.png" alt="X-Salada Fresh" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">X-Salada Fresh</p>
-            <p class="font-semibold">Burger 140g, queijo prato, tomate, alface americana e molho especial.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Burger 140g, queijo prato, tomate, alface americana e molho especial.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$28.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="X-Salada Fresh" data-price="28.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="X-Salada Fresh" data-price="28.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2">
-          <img src="assets/hamb-2.png" alt="Chicken Crispy" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+        <div class="menu-item">
+          <img src="assets/hamb-2.png" alt="Chicken Crispy" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Chicken Crispy</p>
-            <p class="font-semibold">Filé de frango empanado, queijo, alface e molho barbecue.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Filé de frango empanado, queijo, alface e molho barbecue.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$29.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Chicken Crispy" data-price="29.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Chicken Crispy" data-price="29.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2">
-          <img src="assets/hamb-1.png" alt="Veggie Burger" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div>
+        <div class="menu-item">
+          <img src="assets/hamb-1.png" alt="Veggie Burger" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Veggie Burger</p>
-            <p class="font-semibold">Burger de grão-de-bico, queijo, rúcula, tomate e maionese verde.</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <p class="menu-item-desc font-semibold">Burger de grão-de-bico, queijo, rúcula, tomate e maionese verde.</p>
+            <div class="price-row">
               <p class="font-bold text-lg">R$30.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Veggie Burger" data-price="30.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Veggie Burger" data-price="30.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
       </main>
 
-      <div class="mx-auto max-w-7xl px-2 my-2">
+      <div class="category-wrap my-3">
         <h2 class="menu-category-title">Bebidas</h2>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-7 md:gap-10 mx-auto max-w-7xl">
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-1.png" alt="Coca-lata" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <img src="assets/refri-1.png" alt="Coca-lata" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Coca-lata</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$8.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Coca-lata" data-price="8.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Coca-lata" data-price="8.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-2.png" alt="Guaraná-lata" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-2.png" alt="Guaraná-lata" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Guaraná-lata</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$8.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Guaraná-lata" data-price="8.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Guaraná-lata" data-price="8.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-1.png" alt="Água sem gás" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-1.png" alt="Água sem gás" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Água sem gás</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$4.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Água sem gás" data-price="4.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Água sem gás" data-price="4.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-2.png" alt="Água com gás" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-2.png" alt="Água com gás" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Água com gás</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$5.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Água com gás" data-price="5.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Água com gás" data-price="5.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-1.png" alt="Suco de Laranja" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-1.png" alt="Suco de Laranja" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Suco de Laranja 500ml</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$10.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Suco de Laranja 500ml" data-price="10.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Suco de Laranja 500ml" data-price="10.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-2.png" alt="Suco de Uva" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-2.png" alt="Suco de Uva" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Suco de Uva 500ml</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$10.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Suco de Uva 500ml" data-price="10.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Suco de Uva 500ml" data-price="10.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-1.png" alt="Cerveja Pilsen" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-1.png" alt="Cerveja Pilsen" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Cerveja Pilsen Long Neck</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$12.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Cerveja Pilsen Long Neck" data-price="12.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Cerveja Pilsen Long Neck" data-price="12.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
-        <div class="flex gap-2 w-full">
-          <img src="assets/refri-2.png" alt="Cerveja IPA" class="w-28 h-28 rounded-md hover:scale-110 hover:-rotate-2 duration-200">
-          <div class="w-full">
+        <div class="menu-item">
+          <img src="assets/refri-2.png" alt="Cerveja IPA" class="menu-item-image hover:scale-110 hover:-rotate-2 duration-200">
+          <div class="menu-item-content">
             <p class="font-bold">Cerveja IPA Lata</p>
-            <div class="flex items-center gap-2 justify-between mt-3">
+            <div class="price-row">
               <p class="font-bold text-lg">R$15.00</p>
-              <button class="bg-gray-900 px-5 rounded-2xl add-to-cart-btn" data-name="Cerveja IPA Lata" data-price="15.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
+              <button class="cart-icon-btn add-to-cart-btn" data-name="Cerveja IPA Lata" data-price="15.00"><i class="fa-solid fa-cart-plus text-lg text-white"></i></button>
             </div>
           </div>
         </div>
@@ -258,23 +358,23 @@
     </div>
   </section>
 
-  <div class="bg-black/60 w-full h-full fixed top-0 left-0 z-[99]  items-center justify-center hidden " id="cart-modal">
-    <div class="bg-white p-5 rounded-md min-w-[90%] md:min-w-[600px]">
+  <div class="cart-modal-overlay bg-black/60 w-full h-full fixed top-0 left-0 z-[99] items-center justify-center hidden" id="cart-modal">
+    <div class="cart-modal-panel">
       <h2 class="text-center font-bold text-2xl mb-2">Meu carrinho</h2>
       <div id="cart-items" class="flex justify-between mb-2 flex-col"></div>
       <p class="font-bold">Total: <span id="cart-total">R$ 0,00</span></p>
       <p class="font-bold mt-4">Endereço de entrega: </p>
       <input type="text" placeholder="Digite seu Endereço" id="address" class="w-full border-2 p-1 rounded my-1">
       <p class="text-red-500 hidden" id="address-warn">Digite seu endereço completo</p>
-      <div class="flex items-center justify-between mt-5 w-full">
-        <button id="close-modal-btn">
+      <div class="cart-actions mt-5">
+        <button id="close-modal-btn" class="min-h-11">
           Fechar
         </button>
-        <div class="flex items-center gap-2">
-          <button id="clear-cart-btn" class="bg-red-500 text-white px-4 py-1 rounded">
+        <div class="cart-actions-group">
+          <button id="clear-cart-btn" class="bg-red-500 text-white px-4 py-2 rounded min-h-11">
             Limpar carrinho
           </button>
-          <button id="checkout-btn" class="bg-green-600 text-white px-4 py-1 rounded">
+          <button id="checkout-btn" class="bg-green-600 text-white px-4 py-2 rounded min-h-11">
             Finalizar pedido
           </button>
         </div>
@@ -282,8 +382,8 @@
     </div>
   </div>
 
-  <footer class="w-full bg-red-500 py-2 sticky bottom-0 z-50 flex items-center justify-center">
-    <button class="flex items-center gap-2 text-white font-bold" id="cart-btn">
+  <footer class="sticky-cart w-full bg-red-500 sticky bottom-0 z-50 flex items-center justify-center">
+    <button class="flex items-center gap-2 text-white font-bold text-sm md:text-base" id="cart-btn">
       (<span id="cart-count">0</span>)
       Veja seu carrinho
       <i class="fa fa-cart-plus text-lg text-white"></i>

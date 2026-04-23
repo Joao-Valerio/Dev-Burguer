@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +9,20 @@
   <title>Dev Burguer - Seu Perfil</title>
   <style>
     .nav-wrap { position: sticky; top: 0; z-index: 60; background: rgba(24,24,27,.95); border-bottom: 1px solid #3f3f46; }
-    .nav-list { max-width: 80rem; margin: 0 auto; display: flex; gap: .5rem; padding: .9rem .75rem; overflow-x: auto; }
-    .nav-link { color: #fff; font-weight: 600; padding: .5rem .9rem; border-radius: .5rem; border: 1px solid transparent; white-space: nowrap; }
+    .nav-list { max-width: 80rem; margin: 0 auto; display: flex; gap: .5rem; padding: .9rem 1rem; overflow-x: auto; scrollbar-width: thin; }
+    .nav-link { color: #fff; font-weight: 600; padding: .5rem .9rem; border-radius: .5rem; border: 1px solid transparent; white-space: nowrap; flex-shrink: 0; }
     .nav-link.active, .nav-link:hover { background: #dc2626; border-color: #ef4444; }
-    .section-box { background: #fff; border-radius: .6rem; padding: 1rem; margin: 1rem auto; max-width: 48rem; box-shadow: 0 8px 25px rgba(0,0,0,.08); }
-    .form-field { width: 100%; border: 2px solid #d4d4d8; border-radius: .4rem; padding: .5rem .75rem; margin-top: .4rem; margin-bottom: .8rem; }
-    .form-btn { background: #18181b; color: #fff; border-radius: .5rem; padding: .55rem 1rem; font-weight: 700; }
+    .section-box { background: #fff; border-radius: .8rem; padding: 1.1rem; margin: 1rem auto; max-width: 48rem; width: min(calc(100% - 1.5rem), 48rem); box-shadow: 0 8px 25px rgba(0,0,0,.08); }
+    .form-field { width: 100%; border: 2px solid #d4d4d8; border-radius: .4rem; padding: .75rem .85rem; margin-top: .4rem; margin-bottom: .8rem; }
+    .form-btn { background: #18181b; color: #fff; border-radius: .5rem; padding: .75rem 1rem; font-weight: 700; min-height: 2.75rem; }
+    .form-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+    @media (max-width: 520px) {
+      .section-box,
+      .nav-list { width: 100%; padding-left: .85rem; padding-right: .85rem; }
+      .section-box h1 { font-size: 1.75rem; }
+      .form-actions { flex-direction: column; }
+      .form-actions .form-btn { width: 100%; }
+    }
   </style>
 </head>
 <body class="bg-zinc-100">
@@ -41,7 +49,7 @@
       <input id="profile-email" class="form-field bg-zinc-100" type="email" readonly>
       <label class="font-bold">Endereço</label>
       <input id="profile-address" class="form-field" type="text">
-      <div class="flex gap-2">
+      <div class="form-actions">
         <button type="submit" class="form-btn hover:scale-110 hover:-rotate-2 duration-200">Salvar alterações</button>
         <button type="button" id="logout-btn" class="form-btn bg-red-500 hover:scale-110 hover:-rotate-2 duration-200">Sair</button>
       </div>
